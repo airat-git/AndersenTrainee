@@ -1,4 +1,4 @@
-package ru.javatrainee.study;
+package ru.javatrainee.study.polygon;
 
 import ru.javatrainee.study.mylist.MyLinkedList;
 import java.util.Iterator;

@@ -16,7 +16,8 @@ public class MyArrayList <E> implements MyList<E> {
     }
 
     public MyArrayList(int initialCapacity){
-        array = new Object[initialCapacity];
+        capacity = initialCapacity;
+        array = new Object[capacity];
     }
 
     @Override
@@ -32,7 +33,6 @@ public class MyArrayList <E> implements MyList<E> {
             newArr[size] = element;
             array = newArr;
             capacity = newCapacity;
-
         }
         else {
             for (int i = 0; i < array.length;i++){
@@ -89,6 +89,6 @@ public class MyArrayList <E> implements MyList<E> {
             }
             return res.substring(0, res.length() - 2) + "]";
         }
-        return null;
+        return "[]";
     }
 }
