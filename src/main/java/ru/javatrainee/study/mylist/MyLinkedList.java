@@ -35,6 +35,11 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
     }
 
     @Override
+    public boolean offer(E element) {
+        return add(element);
+    }
+
+    @Override
     public E remove() {
         Node<E> toDelete = first;
         if (toDelete == null){
@@ -43,11 +48,6 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
         Object element = first.item;
         replaceElements(first);
         return (E)element;
-    }
-
-    @Override
-    public boolean offer(E element) {
-        return add(element);
     }
 
     @Override
@@ -85,7 +85,6 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
         }
         Object element = first.item;
         replaceElements(first);
-        size--;
         return (E) element;
     }
 
