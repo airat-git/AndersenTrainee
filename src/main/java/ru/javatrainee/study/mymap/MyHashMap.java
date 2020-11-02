@@ -47,10 +47,12 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
         loadCheck();
         int hash = getHash(key);
         int index = getIndex(hash);
-        Node<K,V> newNode = new Node<>(hash,(K)key,(V)value,null);;
+        Node<K,V> newNode = new Node<>(hash,(K)key,(V)value,null);
         Node<K,V> opponent = array[index];
         if (opponent == null){
             array[index] = newNode;
+            size++;
+            return null;
         }
         else {
             Node <K,V> last = null;
