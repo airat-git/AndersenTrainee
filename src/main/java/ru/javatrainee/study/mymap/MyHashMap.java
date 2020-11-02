@@ -6,15 +6,10 @@ import java.util.Objects;
 public class MyHashMap<K,V> implements MyMap<K,V> {
 
     private int size;
-
     private Node<K,V>[] array;
-
     private final int DEFAULT_CAPACITY = 16;
-
     private int capacity;
-
     private final int MAX_CAPACITY = 1 << 30;
-
     private float loadFactor = 0.75f;
 
     public MyHashMap(){
@@ -44,7 +39,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
 
     @Override
     public V put(Object key, Object value) {
-        loadCheck();
+        loadSizeCheck();
         int hash = getHash(key);
         int index = getIndex(hash);
         Node<K,V> newNode = new Node<>(hash,(K)key,(V)value,null);
@@ -134,7 +129,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
         return null;
     }
 
-    private void loadCheck(){
+    private void loadSizeCheck(){
         float load = size/(float)capacity;
         if (load > loadFactor){
             size = 0;

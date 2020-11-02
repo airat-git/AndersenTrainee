@@ -81,7 +81,7 @@ public class MyArrayDequeTest {
                 "MyArrayDeque после добавления элемента: '" + object + "'!");
     }
 
-    public void sizeTestAfterRemoveByIndex(Integer index){
+    public void sizeTestAfterRemoveByIndex(int index){
         Assertions.assertEquals(arrayDequeForCheck.size(), myArrayDeque.size(),"Проблема с размером " +
                 "MyArrayDeque после удаления элемента по индексу: '" + index + "'!");
     }

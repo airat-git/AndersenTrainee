@@ -6,9 +6,7 @@ import java.util.Objects;
 public class MyArrayList <E> implements MyList<E> {
 
     private Object [] array;
-
     private int capacity = 10;
-
     private int size = 0;
 
     public MyArrayList() {

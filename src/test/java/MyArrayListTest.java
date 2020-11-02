@@ -154,7 +154,7 @@ public class MyArrayListTest {
         Assertions.assertEquals(arrayListForCheck.size(), myArrayList.size(),"Проблема с размером " +
                 "MyArrayList после удаления элемента: '" + object + "'!");
     }
-    public void sizeTestAfterRemoveByIndex(Integer index){
+    public void sizeTestAfterRemoveByIndex(int index){
         Assertions.assertEquals(arrayListForCheck.size(), myArrayList.size(),"Проблема с размером " +
                 "MyArrayList после удаления элемента по индексу: '" + index + "'!");
     }

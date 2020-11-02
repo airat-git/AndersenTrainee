@@ -10,9 +10,7 @@ import java.util.function.Consumer;
 public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
 
     private Node<E> first;
-
     private Node<E> last;
-
     private int size = 0;
 
     @Override

@@ -94,7 +94,6 @@ public class MyLinkedListTest {
                 "Элемент по индексу '" + 1 + "' не совпадают!");
     }
 
-
     @Test
     public void removeByObjectFromHeadTest(){
         Assertions.assertEquals(linkedListForCheck.remove("Element One"),myLinkedList.remove("Element One"),
@@ -154,7 +153,7 @@ public class MyLinkedListTest {
         Assertions.assertEquals(linkedListForCheck.size(), myLinkedList.size(),"Проблема с размером " +
                 "MyLinkedList после удаления элемента: '" + object + "'!");
     }
-    public void sizeTestAfterRemoveByIndex(Integer index){
+    public void sizeTestAfterRemoveByIndex(int index){
         Assertions.assertEquals(linkedListForCheck.size(), myLinkedList.size(),"Проблема с размером " +
                 "MyLinkedList после удаления элемента по индексу: '" + index + "'!");
     }

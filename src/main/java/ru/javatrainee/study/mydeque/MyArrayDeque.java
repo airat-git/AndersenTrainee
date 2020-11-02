@@ -6,13 +6,9 @@ import java.util.Objects;
 public class MyArrayDeque<E> implements MyDeque<E> {
 
     private Object[] array;
-    
     private int capacity = 16;
-    
     private int size = 0;
-    
     private int head;
-    
     private int tail;
 
     public MyArrayDeque(int initialCapacity) {
