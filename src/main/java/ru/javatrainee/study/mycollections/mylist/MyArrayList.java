@@ -1,4 +1,4 @@
-package ru.javatrainee.study.mylist;
+package ru.javatrainee.study.mycollections.mylist;
 
 import java.util.Arrays;
 import java.util.Objects;

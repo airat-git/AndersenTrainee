@@ -1,4 +1,4 @@
-package ru.javatrainee.study.mydeque;
+package ru.javatrainee.study.mycollections.mydeque;
 
 public interface MyDeque<E> extends MyQueue<E> {
 

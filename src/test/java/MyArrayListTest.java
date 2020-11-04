@@ -3,8 +3,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import ru.javatrainee.study.mylist.MyArrayList;
-import ru.javatrainee.study.mylist.MyList;
+import ru.javatrainee.study.mycollections.mylist.MyArrayList;
+import ru.javatrainee.study.mycollections.mylist.MyList;
 
 import java.util.ArrayList;
 import java.util.List;

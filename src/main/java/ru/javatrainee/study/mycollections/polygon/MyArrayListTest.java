@@ -1,7 +1,7 @@
-package ru.javatrainee.study.polygon;
+package ru.javatrainee.study.mycollections.polygon;
 
-import ru.javatrainee.study.mylist.MyArrayList;
-import ru.javatrainee.study.mylist.MyList;
+import ru.javatrainee.study.mycollections.mylist.MyArrayList;
+import ru.javatrainee.study.mycollections.mylist.MyList;
 
 public class MyArrayListTest {
 

@@ -1,6 +1,6 @@
-package ru.javatrainee.study.polygon;
+package ru.javatrainee.study.mycollections.polygon;
 
-import ru.javatrainee.study.mymap.MyHashMap;
+import ru.javatrainee.study.mycollections.mymap.MyHashMap;
 
 public class MyHashMapTest {
 

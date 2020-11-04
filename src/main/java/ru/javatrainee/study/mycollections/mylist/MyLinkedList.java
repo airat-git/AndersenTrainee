@@ -1,6 +1,6 @@
-package ru.javatrainee.study.mylist;
+package ru.javatrainee.study.mycollections.mylist;
 
-import ru.javatrainee.study.mydeque.MyQueue;
+import ru.javatrainee.study.mycollections.mydeque.MyQueue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

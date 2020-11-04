@@ -1,7 +1,7 @@
-package ru.javatrainee.study.polygon;
+package ru.javatrainee.study.mycollections.polygon;
 
-import ru.javatrainee.study.mydeque.MyArrayDeque;
-import ru.javatrainee.study.mydeque.MyDeque;
+import ru.javatrainee.study.mycollections.mydeque.MyArrayDeque;
+import ru.javatrainee.study.mycollections.mydeque.MyDeque;
 
 public class MyArrayDequeTest {
 

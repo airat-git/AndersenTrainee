@@ -1,4 +1,4 @@
-package ru.javatrainee.study.mymap;
+package ru.javatrainee.study.mycollections.mymap;
 
 import java.util.Map;
 import java.util.Objects;

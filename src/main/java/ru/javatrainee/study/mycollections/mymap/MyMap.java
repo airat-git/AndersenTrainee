@@ -1,4 +1,4 @@
-package ru.javatrainee.study.mymap;
+package ru.javatrainee.study.mycollections.mymap;
 
 public interface MyMap <K,V> {
 

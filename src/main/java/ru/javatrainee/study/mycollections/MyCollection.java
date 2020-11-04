@@ -1,4 +1,4 @@
-package ru.javatrainee.study;
+package ru.javatrainee.study.mycollections;
 
 public interface MyCollection <E> {
 

@@ -1,4 +1,4 @@
-package ru.javatrainee.study.mydeque;
+package ru.javatrainee.study.mycollections.mydeque;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;

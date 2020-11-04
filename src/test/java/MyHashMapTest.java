@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.javatrainee.study.mymap.MyHashMap;
+import ru.javatrainee.study.mycollections.mymap.MyHashMap;
 
 public class MyHashMapTest {
 

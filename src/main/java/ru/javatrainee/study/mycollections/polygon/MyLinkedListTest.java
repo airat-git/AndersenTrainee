@@ -1,6 +1,6 @@
-package ru.javatrainee.study.polygon;
+package ru.javatrainee.study.mycollections.polygon;
 
-import ru.javatrainee.study.mylist.MyLinkedList;
+import ru.javatrainee.study.mycollections.mylist.MyLinkedList;
 import java.util.Iterator;
 
 public class MyLinkedListTest {

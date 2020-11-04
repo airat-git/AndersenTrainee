@@ -1,6 +1,6 @@
-package ru.javatrainee.study.mydeque;
+package ru.javatrainee.study.mycollections.mydeque;
 
-import ru.javatrainee.study.MyCollection;
+import ru.javatrainee.study.mycollections.MyCollection;
 
 public interface MyQueue <E> extends MyCollection<E>{
 

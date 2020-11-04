@@ -1,6 +1,6 @@
-package ru.javatrainee.study.mylist;
+package ru.javatrainee.study.mycollections.mylist;
 
-import ru.javatrainee.study.MyCollection;
+import ru.javatrainee.study.mycollections.MyCollection;
 
 public interface MyList<E> extends MyCollection <E> {
 
