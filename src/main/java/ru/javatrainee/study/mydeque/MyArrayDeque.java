@@ -28,7 +28,7 @@ public class MyArrayDeque<E> implements MyDeque<E> {
 
     @Override
     public boolean add(E element) {
-        if (element == null){
+        if (Objects.isNull(element)){
             throw new NullPointerException();
         }
         if (offer(element)){
@@ -103,7 +103,7 @@ public class MyArrayDeque<E> implements MyDeque<E> {
             return false;
         }
         for (int i = 0; i < array.length;i++){
-            if (array[i] == null){
+            if (Objects.isNull(array[i])){
                 array[i] = element;
                 size++;
                 if (size == 1){

@@ -4,6 +4,7 @@ import ru.javatrainee.study.mydeque.MyQueue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
@@ -16,7 +17,7 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
     @Override
     public boolean add(E element) {
         Node<E> newNode = new Node<>(last,element,null);
-        if (element == null){
+        if (Objects.isNull(element)){
             throw new NullPointerException();
         }
         if (size == 0){
@@ -40,7 +41,7 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
     @Override
     public E remove() {
         Node<E> toDelete = first;
-        if (toDelete == null){
+        if (Objects.isNull(toDelete)){
             throw new NoSuchElementException();
         }
         Object element = first.item;
@@ -51,7 +52,7 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
     @Override
     public E remove(int index) {
         Node<E> toDelete = catchNode(index);
-        if (toDelete != null){
+        if (Objects.nonNull(toDelete)){
             replaceElements(toDelete);
             return toDelete.item;
         }
@@ -60,7 +61,7 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
     @Override
     public boolean remove(Object object) {
         Node<E> toDelete = catchNode(object);
-        if (toDelete != null){
+        if (Objects.nonNull(toDelete)){
             return replaceElements(toDelete);
         }
         return false;
@@ -78,7 +79,7 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
 
     @Override
     public E poll() {
-        if (first == null){
+        if (Objects.isNull(first)){
             return null;
         }
         Object element = first.item;
@@ -88,7 +89,7 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
 
     @Override
     public E peek() {
-        return first == null ? null : first.item;
+        return Objects.isNull(first) ? null : first.item;
     }
 
     @Override
@@ -128,10 +129,10 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
             last = null;
         }
         else {
-            if (prevElement == null) {
+            if (Objects.isNull(prevElement)) {
                 nextElement.prev = null;
                 first = nextElement;
-            } else if (nextElement == null) {
+            } else if (Objects.isNull(nextElement)) {
                 prevElement.next = null;
                 last = prevElement;
             } else {
@@ -173,7 +174,7 @@ public class MyLinkedList <E> implements MyList<E>, MyQueue<E>,Iterable<E> {
 
             @Override
             public boolean hasNext() {
-                return cursor != null;
+                return Objects.nonNull(cursor);
             }
 
             @Override

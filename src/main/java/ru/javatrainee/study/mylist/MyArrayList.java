@@ -34,7 +34,7 @@ public class MyArrayList <E> implements MyList<E> {
         }
         else {
             for (int i = 0; i < array.length;i++){
-                if (array[i] == null){
+                if (Objects.isNull(array[i])){
                     array[i] = element;
                     break;
                 }
@@ -47,7 +47,7 @@ public class MyArrayList <E> implements MyList<E> {
     @Override
     public boolean remove(Object object) {
         for (int i = 0; i < array.length;i++){
-            if (array[i] != null && array[i].equals(object)){
+            if (Objects.nonNull(array[i]) && array[i].equals(object)){
                 remove(i);
                 return true;
             }
@@ -81,7 +81,7 @@ public class MyArrayList <E> implements MyList<E> {
         if (size > 0) {
             String res = "[";
             for (Object o : array) {
-                if (o != null) {
+                if (Objects.nonNull(o)) {
                     res = res + o + ", ";
                 }
             }

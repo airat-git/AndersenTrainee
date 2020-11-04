@@ -31,7 +31,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
     @Override
     public V get(Object key) {
         Node <K,V> node = catchNode(key);
-        if (node != null){
+        if (Objects.nonNull(node)){
             return node.getValue();
         }
         return null;
@@ -44,7 +44,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
         int index = getIndex(hash);
         Node<K,V> newNode = new Node<>(hash,(K)key,(V)value,null);
         Node<K,V> opponent = array[index];
-        if (opponent == null){
+        if (Objects.isNull(opponent)){
             array[index] = newNode;
             size++;
             return null;
@@ -65,11 +65,12 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
         size++;
         return (V)value;
     }
+
     @Override
     public V remove(Object key) {
         Node<K,V> node = delete(key);
         V value;
-        if (node!=null){
+        if (Objects.nonNull(node)){
             value = node.getValue();
             size--;
             return value;
@@ -81,8 +82,8 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
         int hash = getHash(key);
         int index = getIndex(hash);
         Node<K,V> node= array[index];
-        if (node != null){
-            if (node.next == null){
+        if (Objects.nonNull(node)){
+            if (Objects.isNull(node.next)){
                 return node;
             }
             for (Node<K,V> n = node; n!= null; n = n.next){
@@ -101,9 +102,9 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
         int index = getIndex(hash);
         Node<K,V> node = array[index];
 
-        if (node!= null){
+        if (Objects.nonNull(node)){
             Node<K,V> next = node.next;
-            if (next == null){
+            if (Objects.isNull(next)){
                 if (node.hash == hash & node.key.equals(key)){
                     array[index] = null;
                     return node;
@@ -114,7 +115,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
                 next = n.next;
                 if (n.hash == hash){
                     if (n.key.equals(key)){
-                        if (prev!=null) {
+                        if (Objects.nonNull(prev)) {
                             prev.next = next;
                         }
                         else {
@@ -140,7 +141,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
             Node<K,V>[] oldArr = array;
             array = new Node[capacity];
             for (Node<K,V> nod : oldArr){
-                if (nod != null){
+                if (Objects.nonNull(nod)){
                     for (Node<K,V> n = nod; n != null; n = n.next){
                         put( n.getKey(), n.getValue());
                     }
@@ -163,7 +164,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
         String s = "{";
         if (size!=0) {
             for (int i = 0; i < array.length; i++) {
-                if (array[i] != null) {
+                if (Objects.nonNull(array[i])) {
                     for (Node<K,V> n = array[i]; n != null; n = n.next){
                         s = s + n + ", ";
                     }
