@@ -1,11 +1,15 @@
 package ru.javatrainee.study.chat.client;
 
+import lombok.extern.slf4j.Slf4j;
+import ru.javatrainee.study.chat.utils.ChatUtils;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
 
+@Slf4j
 public abstract class MessageSender implements Serializable {
 
     protected String name;
@@ -22,7 +26,8 @@ public abstract class MessageSender implements Serializable {
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Не удается подключиться к серверу: HOST {}, PORT {}",HOST,PORT);
+            ChatUtils.connectionCheck(objectOutputStream,objectInputStream);
         }
     }
 

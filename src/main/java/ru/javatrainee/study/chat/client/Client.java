@@ -1,12 +1,12 @@
 package ru.javatrainee.study.chat.client;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.javatrainee.study.chat.messages.ClientMessage;
 
 import java.io.*;
 
-@Getter
+@Slf4j
 @NoArgsConstructor
 public class Client extends MessageSender {
 
@@ -28,19 +28,9 @@ public class Client extends MessageSender {
                     break;
                 }
                 objectOutputStream.writeObject(new ClientMessage(this,message));
-
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                objectOutputStream.close();
-                objectInputStream.close();
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            log.error("Ошибка подключения к серверу. Возможно он был остановлен. Попробуйте переподключиться позже",e);
         }
     }
 }

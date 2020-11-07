@@ -1,12 +1,15 @@
 package ru.javatrainee.study.chat.server;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.javatrainee.study.chat.messages.Message;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
+@Slf4j
 public class ClientHandler implements Runnable {
 
     private Socket socket;
@@ -17,7 +20,6 @@ public class ClientHandler implements Runnable {
     public ClientHandler(Socket socket, Server server) {
         this.socket = socket;
         this.server = server;
-
         try {
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
@@ -38,9 +40,14 @@ public class ClientHandler implements Runnable {
         catch (ClassNotFoundException e){
             e.getStackTrace();
         }
-        catch (InterruptedException | IOException ex) {
-            System.out.println("Клиент покинул чат");
-        } finally {
+        catch (SocketException e){
+            log.info("Участник покинул чат");
+        }
+        catch (InterruptedException | IOException e){
+            log.warn("Неизвестная ошибка",e);
+            Thread.currentThread().interrupt();
+        }
+         finally {
             this.close();
         }
     }

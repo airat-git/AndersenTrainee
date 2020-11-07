@@ -1,5 +1,7 @@
 package ru.javatrainee.study.chat.server.bot;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +20,7 @@ import java.util.Objects;
 public class SimpleBot implements Bot{
 
     private static final MapKeyWords MAP_KEY_WORDS = new MapKeyWords();
+    private static final String WHITE_SPACE = " ";
 
     private final HashMap<String,String> helloBye;
     private final HashMap<String,String> prepositions;
@@ -32,7 +35,7 @@ public class SimpleBot implements Bot{
     }
 
     public String checkWord(String message){
-        if (message.split(" ")[0].equalsIgnoreCase("бот")) {
+        if (message.split(WHITE_SPACE)[0].equalsIgnoreCase("бот")) {
             return botMessageFormat(getResponse(message));
         }
         return null;
@@ -46,22 +49,21 @@ public class SimpleBot implements Bot{
         StringBuilder hb = new StringBuilder();
         StringBuilder act = new StringBuilder();
 
-        for (int i = 0; i < messageArray.length;i++){
-            String word = messageArray[i];
-            if (helloBye.containsKey(word)){
+        for (String word : messageArray) {
+            if (helloBye.containsKey(word)) {
                 hb.append(helloBye.get(word));
             }
-            if (prepositions.containsKey(word)){
+            if (prepositions.containsKey(word)) {
                 act.append(prepositions.get(word));
             }
-            if (activity.containsKey(word)){
+            if (activity.containsKey(word)) {
                 act.append(activity.get(word));
             }
-            if (word.equals("")){
-                act.append(" ");
+            if (word.equals(StringUtils.EMPTY)) {
+                act.append(WHITE_SPACE);
             }
         }
-        if (hb.toString().equals("") & act.toString().equals("")){
+        if (hb.toString().equals(StringUtils.EMPTY) && act.toString().equals(StringUtils.EMPTY)){
             return null;
         }
         return decodeKeyWords(hb.toString(), act.toString());
@@ -73,21 +75,21 @@ public class SimpleBot implements Bot{
             return words.get("2");
         }
         else if (hb.equals("1")){
-            response.append(words.get(hb)).append(" ");
+            response.append(words.get(hb)).append(WHITE_SPACE);
         }
-        String[] wordsArray = act.split(" ");
+        String[] wordsArray = act.split(WHITE_SPACE);
         for (String word : wordsArray){
             if (words.containsKey(word)){
                 response.append(words.get(word)).append(". ");
             }
         }
-        return response.toString().equals("") ? "Извини, я тебя не понял" : response.toString();
+        return response.toString().equals(StringUtils.EMPTY) ? "Извини, я тебя не понял" : response.toString();
     }
 
     private String [] symbolsIgnore(String message){
-        String[] words = message.toLowerCase().split(" ");
+        String[] messageWords = message.toLowerCase().split(WHITE_SPACE);
         StringBuilder newMessage = new StringBuilder();
-        for (String word : words) {
+        for (String word : messageWords) {
             if (!word.equals("бот")) {
                 char[] chars = word.toCharArray();
                 for (char c : chars) {
@@ -97,10 +99,10 @@ public class SimpleBot implements Bot{
                         newMessage.append("  ");
                     }
                 }
-                newMessage.append(" ");
+                newMessage.append(WHITE_SPACE);
             }
         }
-        return newMessage.toString().split(" ");
+        return newMessage.toString().split(WHITE_SPACE);
     }
 
     private static String botMessageFormat(String message){
