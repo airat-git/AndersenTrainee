@@ -1,51 +1,43 @@
 package ru.javatrainee.study.streams;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Создание списка стримом путем итерации до 40:");
         List<Integer> integerList = Stream.iterate(1, n -> n = n + 1)
                 .limit(40)
                 .collect(Collectors.toList());
-        System.out.println(integerList);
-
-        System.out.println("filter() - все нечетные числа:\n" + integerList.stream().
+        log.info("Создание списка стримом путем итерации до 40: {}", integerList);
+        log.info("filter() - все нечетные числа: {}",integerList.stream().
                 filter(n -> n%2!= 0).collect(Collectors.toList()));
-
-        System.out.println("map() - все нечетные числа были множены на 3:\n" + integerList.stream().filter(n -> n%2!= 0)
-                .map(n -> n*3).collect(Collectors.toList()));
-
+        log.info("map() - все нечетные числа были множены на 3: {}",integerList.stream().filter(n -> n % 2 != 0)
+                .map(n -> n * 3).collect(Collectors.toList()));
         int [][] array = new int[][]{{1,2},{3,4},{5,6},{7,8},{9,10}};
-        System.out.println("flatMap() - преобразование двумерного массива чисел в одномерный:");
-        int [] array2 = Arrays.stream(array)
-                .flatMapToInt(Arrays::stream).toArray();
-        System.out.println(Arrays.toString(array2));
-
-        System.out.println("peek() - просмотр всех чисел списка от 1 до 10:");
+        int [] array2 = Arrays.stream(array).flatMapToInt(Arrays::stream).toArray();
+        log.info("flatMap() - преобразование двумерного массива чисел в одномерный: {}", Arrays.toString(array2));
+        log.info("peek() - просмотр всех чисел списка от 1 до 10:");
         integerList.stream().limit(10).
-                peek(n -> System.out.println("Число: " + n)).collect(Collectors.toList());
+                peek(n -> log.debug("Число: {}",n)).collect(Collectors.toList());
+        log.info("findFirst() - первый элемент списка: {}", integerList.stream().findFirst().get());
+        log.info("findAny() - любой элемент списка: {}", integerList.stream().findAny().get());
 
-        System.out.println("findFirst() - первый элемент списка:\n" + integerList.stream().findFirst().get());
-
-        System.out.println("findAny() - любой элемент списка:\n" + integerList.stream().findAny().get());
-
-        System.out.println("collect(Collectors.toMap()) - преобразование двумерного массива в мапу:");
         Map <Integer,Integer> integerMap = Arrays.stream(array).collect(Collectors.
                 toMap(n -> n[0], n -> n[1]));
-        System.out.println(integerMap);
+        log.info("collect(Collectors.toMap()) - преобразование двумерного массива в мапу: {}", integerMap);
+        Set <Integer> integerSet = integerList.stream().collect(Collectors.toSet());
+        log.info("collect(Collectors.toSet()) - преобразование списка в сет: {}", integerSet);
 
-        System.out.println("collect(Collectors.toSet()) - преобразование списка в сет:\n" +
-                integerList.stream().collect(Collectors.
-                toSet()));
-
-        System.out.println("collect(Collectors.groupingBy()) - группировка моделей телефонов по изготовителям:\n");
+        log.info("collect(Collectors.groupingBy()) - группировка моделей телефонов по изготовителям:");
         Stream<Phone> phoneStream = Stream.of(
                 new Phone("iPhone X", "Apple", 600),
                 new Phone("5610", "Nokia", 50),
@@ -57,15 +49,14 @@ public class Main {
                 Collectors.groupingBy(Phone::getCompany));
 
         for(Map.Entry<String, List<Phone>> item : phonesByCompany.entrySet()){
-            System.out.println(item.getKey());
+            log.info("Изготовитель: {}",item.getKey());
             for(Phone phone : item.getValue()){
-                System.out.println(phone.getName());
+                log.info("Модель: {}",phone.getName());
             }
-            System.out.println("---------");
+            log.info("---------");
         }
-
-        System.out.println("forEach() - все нечетные числа листа выводятся на экран:");
+        log.info("forEach() - все нечетные числа листа выводятся на экран:");
         integerList.stream().filter(n -> n % 2 != 0)
-                .forEach(System.out::println);
+                .forEach(n -> log.debug(String.valueOf(n)));
     }
 }

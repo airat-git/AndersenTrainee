@@ -1,5 +1,8 @@
 package ru.javatrainee.study.streams;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SimpleTask extends Task {
 
     private static final String INCREMENT_MESSAGE = "Четное после увелечения на 1: ";
@@ -8,18 +11,18 @@ public class SimpleTask extends Task {
 
         collection.stream()
                 .filter(n -> n % 2 == 0)
-                .peek(n -> System.out.println("Четное число: " + n))
-                .map(n -> n = n +1)
-                .forEach(n -> System.out.println(INCREMENT_MESSAGE + n));
+                .peek(n -> log.debug("Четное число: " + n))
+                .map(n -> n = n + 1)
+                .forEach(n -> log.info(INCREMENT_MESSAGE + n));
 
-        System.out.println("Parallel Stream with forEach()");
+        log.info("Parallel Stream with forEach()");
         collection.parallelStream()
-                .map(n -> n = n +1)
-                .forEach(n -> System.out.println(INCREMENT_MESSAGE + n));
+                .map(n -> n = n + 1)
+                .forEach(n -> log.info(INCREMENT_MESSAGE + n));
 
-        System.out.println("Parallel Stream with forEachOrder()");
+        log.info("Parallel Stream with forEachOrder()");
         collection.parallelStream()
-                .map(n -> n = n +1)
-                .forEachOrdered(n -> System.out.println(INCREMENT_MESSAGE + n));
+                .map(n -> n = n + 1)
+                .forEachOrdered(n -> log.info(INCREMENT_MESSAGE + n));
     }
 }
