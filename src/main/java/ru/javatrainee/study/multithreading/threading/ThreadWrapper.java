@@ -2,14 +2,14 @@ package ru.javatrainee.study.multithreading.threading;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class MyThread extends Thread{
+public class ThreadWrapper implements Runnable{
 
     private final DataClass dataClass;
-    private static int incrementCount = 1;
+    private static AtomicInteger incrementCount = new AtomicInteger(0);
 
-    public MyThread(DataClass dataClass,String name) {
-        super(name);
+    public ThreadWrapper(DataClass dataClass) {
         this.dataClass = dataClass;
     }
 
@@ -17,17 +17,16 @@ public class MyThread extends Thread{
     public void run() {
         synchronized (dataClass) {
             String startTime = getCurrentTime();
-            int oldValue = dataClass.getOldValue();
-            dataClass.setNewValue(dataClass.getValue() + MyThread.incrementCount);
+            int oldValue = dataClass.getValue();
+            dataClass.setNewValue(dataClass.getValue() + ThreadWrapper.incrementCount.incrementAndGet());
             fixChanges(oldValue);
             display(startTime);
-            incrementCount++;
         }
     }
 
     private void fixChanges(int oldValue){
         DataClass.changeLog.put("Поток - " + Thread.currentThread().getName(), ". Старое значение: " +
-                oldValue + ", прибавил: " + MyThread.incrementCount + ", новое значение: " + dataClass.getValue());
+                oldValue + ", прибавил: " + ThreadWrapper.incrementCount.get() + ", новое значение: " + dataClass.getValue());
     }
 
     private void display(String startTime){

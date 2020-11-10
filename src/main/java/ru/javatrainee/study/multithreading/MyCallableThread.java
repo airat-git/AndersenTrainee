@@ -8,8 +8,7 @@ public class MyCallableThread implements Callable {
     public String call() {
         try {
             return Thread.currentThread().getName();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return "nothing to return";
         }
     }

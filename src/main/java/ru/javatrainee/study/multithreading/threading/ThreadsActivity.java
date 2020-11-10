@@ -1,19 +1,21 @@
 package ru.javatrainee.study.multithreading.threading;
 
-import java.util.ArrayList;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ThreadsActivity {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws InterruptedException {
 
         DataClass dataClass = new DataClass();
-        ArrayList<MyThread> threads = new ArrayList<>();
+        ExecutorService fixedPool = Executors.newFixedThreadPool(10,Thread::new);
 
         for (int i = 65; i < 70 ; i++){
-            threads.add(new MyThread(dataClass,(char)i+""));
+            fixedPool.submit(new ThreadWrapper(dataClass));
         }
-        threads.forEach(MyThread::start);
+
+        fixedPool.shutdown();
         Thread.sleep(1000);
 
         for (Map.Entry<String,String> entry : DataClass.changeLog.entrySet()){
