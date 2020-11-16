@@ -7,6 +7,7 @@ import ru.javatrainee.study.advanced.entity.Person;
 import ru.javatrainee.study.advanced.exception.NoSuchDataInDBException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -22,7 +23,8 @@ public class PersonDAO extends AbstractDAO<Person> {
                 .createQuery("FROM Person where name = :name")
                 .setParameter("name",name)
                 .list();
-        Optional<Person> person = resultList.stream().filter(p -> p.getName().equals(name)).findAny();
+        Optional<Person> person = resultList.stream()
+                .filter(p -> Objects.nonNull(p.getName()) && p.getName().equals(name)).findAny();
         closeSession();
         if (person.isEmpty()){
             throw new NoSuchDataInDBException();
